@@ -1,0 +1,164 @@
+/* =====================================================================
+   Fio dos Desejos — Página Hub (link na bio)
+   Primeira tela ao clicar no link das redes sociais. O cliente escolhe
+   para onde ir: Loja, WhatsApp, Instagram, TikTok.
+   ===================================================================== */
+
+.hub {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(2rem, 6vw, 4rem) 1.2rem;
+  position: relative;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #FCEFE4 0%, transparent 60%),
+    var(--cream);
+}
+
+/* fundo com leve textura de pontinhos */
+.hub::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(201,139,125,0.10) 1.4px, transparent 1.4px);
+  background-size: 26px 26px;
+  pointer-events: none;
+  mask-image: radial-gradient(circle at 50% 35%, #000 30%, transparent 75%);
+}
+
+.hub__card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.hub__avatar {
+  width: 148px; height: 148px;
+  margin: 0 auto var(--space-2);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--cream-soft);
+  box-shadow: var(--shadow-md), 0 0 0 2px var(--rose);
+  background: var(--cream-soft);
+  animation: floatY 5s ease-in-out infinite;
+}
+.hub__avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.hub__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 6vw, 2.1rem);
+  color: var(--brown);
+  margin-bottom: 0.15rem;
+}
+
+.hub__tag {
+  font-size: 0.95rem;
+  color: var(--brown-faint);
+  margin-bottom: var(--space-3);
+}
+
+/* mini ícones sociais no topo */
+.hub__socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: var(--space-3);
+}
+.hub__socials a {
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--cream-soft);
+  color: var(--rose-deep);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-fast), color var(--t-fast), background var(--t-fast);
+}
+.hub__socials a:hover {
+  transform: translateY(-3px);
+  background: var(--rose);
+  color: var(--cream-soft);
+}
+.hub__socials svg { width: 20px; height: 20px; }
+
+/* botões grandes em pílula */
+.hub__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.hub__link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  width: 100%;
+  padding: 1.05rem 1.4rem;
+  border-radius: var(--radius-pill);
+  background: var(--cream-soft);
+  color: var(--brown);
+  font-weight: 600;
+  font-size: 1.02rem;
+  box-shadow: var(--shadow-sm);
+  border: 1.5px solid transparent;
+  transition: transform var(--t-fast), box-shadow var(--t-base), border-color var(--t-base), background var(--t-base);
+}
+.hub__link:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--rose);
+}
+.hub__link .ico {
+  flex: 0 0 24px;
+  display: grid; place-items: center;
+  color: var(--rose-deep);
+}
+.hub__link .ico svg { width: 22px; height: 22px; }
+.hub__link .arrow {
+  margin-left: auto;
+  color: var(--brown-faint);
+  transition: transform var(--t-fast);
+}
+.hub__link:hover .arrow { transform: translateX(4px); }
+
+/* botão de destaque — Loja */
+.hub__link--primary {
+  background: var(--rose);
+  color: var(--cream-soft);
+  box-shadow: 0 10px 24px rgba(174, 111, 96, 0.32);
+}
+.hub__link--primary .ico,
+.hub__link--primary .arrow { color: var(--cream-soft); }
+.hub__link--primary:hover { background: var(--rose-deep); border-color: transparent; }
+
+/* botão WhatsApp */
+.hub__link--whats .ico { color: var(--sage-deep); }
+
+.hub__footer {
+  margin-top: var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--brown-faint);
+}
+.hub__footer a { color: var(--rose-deep); font-weight: 600; }
+
+/* entrada escalonada */
+.hub__link, .hub__name, .hub__tag, .hub__socials, .hub__avatar {
+  animation: hubIn 0.6s var(--ease) both;
+}
+.hub__avatar   { animation: floatY 5s ease-in-out infinite, hubIn 0.6s var(--ease) both; }
+.hub__name     { animation-delay: 0.05s; }
+.hub__tag      { animation-delay: 0.12s; }
+.hub__socials  { animation-delay: 0.18s; }
+.hub__link:nth-child(1) { animation-delay: 0.24s; }
+.hub__link:nth-child(2) { animation-delay: 0.30s; }
+.hub__link:nth-child(3) { animation-delay: 0.36s; }
+.hub__link:nth-child(4) { animation-delay: 0.42s; }
+.hub__link:nth-child(5) { animation-delay: 0.48s; }
+
+@keyframes hubIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}

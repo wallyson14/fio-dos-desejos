@@ -1,0 +1,74 @@
+/* =====================================================================
+   Fio dos Desejos — Design Tokens
+   Paleta extraída da identidade visual da marca (creme + rosé/cobre,
+   com toques de verde-sálvia). Tudo centralizado aqui para manter
+   consistência e facilitar manutenção.
+   ===================================================================== */
+
+:root {
+  /* ---------- Cores: base creme ---------- */
+  --cream:        #F7F1E4;   /* fundo principal */
+  --cream-soft:   #FCF7EE;   /* cards e superfícies elevadas */
+  --sand:         #EFE3D1;   /* seções alternadas / círculos de categoria */
+  --sand-deep:    #E5D6C0;
+
+  /* ---------- Cores: rosé / cobre (marca) ---------- */
+  --rose:         #C98B7D;   /* cor primária — botões, destaques */
+  --rose-deep:    #AE6F60;   /* hover / estados ativos */
+  --blush:        #E7A89F;   /* rosa suave de apoio */
+  --pink:         #E78BA6;   /* rosa lúdico — página hub */
+  --pink-deep:    #D77392;
+
+  /* ---------- Cores: verde sálvia (folhagem) ---------- */
+  --sage:         #9FAE82;
+  --sage-deep:    #7C8C61;
+
+  /* ---------- Cores: texto ---------- */
+  --brown:        #6B4A38;   /* títulos — cacau quente */
+  --brown-soft:   #8A6B58;   /* corpo de texto */
+  --brown-faint:  #B49C8C;   /* legendas / texto secundário */
+
+  /* ---------- Cores: utilitárias ---------- */
+  --gold:         #E0A23C;   /* estrelas de avaliação */
+  --ink:          #2E211A;   /* contraste forte pontual */
+  --white:        #FFFFFF;
+
+  /* ---------- Tipografia ---------- */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body:    "Quicksand", system-ui, -apple-system, Segoe UI, sans-serif;
+
+  --fs-hero:    clamp(2.4rem, 5.5vw, 4.4rem);
+  --fs-h2:      clamp(1.7rem, 3.6vw, 2.6rem);
+  --fs-h3:      clamp(1.15rem, 1.8vw, 1.4rem);
+  --fs-lead:    clamp(1rem, 1.5vw, 1.18rem);
+  --fs-body:    1rem;
+  --fs-small:   0.86rem;
+
+  /* ---------- Espaçamento ---------- */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* ---------- Raios ---------- */
+  --radius-sm:  12px;
+  --radius-md:  20px;
+  --radius-lg:  28px;
+  --radius-pill: 999px;
+
+  /* ---------- Sombras (suaves, quentes) ---------- */
+  --shadow-sm: 0 4px 14px rgba(107, 74, 56, 0.08);
+  --shadow-md: 0 10px 30px rgba(107, 74, 56, 0.12);
+  --shadow-lg: 0 20px 50px rgba(107, 74, 56, 0.16);
+
+  /* ---------- Layout ---------- */
+  --maxw: 1200px;
+  --nav-h: 78px;
+
+  /* ---------- Transições ---------- */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 160ms var(--ease);
+  --t-base: 280ms var(--ease);
+}
