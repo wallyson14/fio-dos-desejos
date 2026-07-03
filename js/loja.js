@@ -1,11 +1,11 @@
 /* =====================================================================
    Fio dos Desejos — Loja
-   Interações da landing page: navbar, menu mobile, reveal no scroll,
-   pedido direto pelo WhatsApp (produtos e personalização), favoritos,
-   link ativo e formulário → WhatsApp com o pedido já montado.
+   Catálogo gerado a partir da lista PRODUTOS (fácil de manter),
+   galeria de fotos por produto, pedidos direto pelo WhatsApp,
+   navbar, menu mobile, reveal no scroll e formulário → WhatsApp.
 
    Sem checkout no site: todo pedido é finalizado pelo WhatsApp, com a
-   mensagem preenchida automaticamente para o cliente não digitar de novo.
+   mensagem preenchida automaticamente. Preço é sob consulta.
    ===================================================================== */
 
 (function () {
@@ -14,10 +14,202 @@
   /* --------- Configuração rápida (edite aqui) --------- */
   const WHATSAPP_NUMBER = "5598981950075"; // DDI + DDD + número, só dígitos
 
-  // Abre o WhatsApp com a mensagem já escrita
   function openWhats(texto) {
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
     window.open(url, "_blank", "noopener");
+  }
+
+  /* =====================================================================
+     CATÁLOGO
+     Para adicionar um produto novo, copie um bloco { ... } abaixo e ajuste.
+     - nome, categoria, tamanho, descricao
+     - imagens: lista de caminhos das SUAS fotos (recomendado 3 por peça).
+       Deixe [] para usar um placeholder "foto em breve" enquanto não tiver.
+       Ex.: imagens: ["assets/images/ursinho-1.jpg", "assets/images/ursinho-2.jpg"]
+     - badge: selo opcional no canto da foto (ex.: "Novidade"). Deixe "" pra nenhum.
+     ===================================================================== */
+  const PRODUTOS = [
+    {
+      nome: "Caixa Dinossauros Baby",
+      categoria: "Bebês",
+      tamanho: "12 cm cada",
+      badge: "Novidade",
+      descricao: "Seis dinossauros coloridos numa caixa fofa. Um presente encantador para bebês e crianças.",
+      imagens: ["assets/images/produto-dinos.jpg"],
+    },
+    {
+      nome: "Luffy (One Piece)",
+      categoria: "Personagens",
+      tamanho: "30 cm",
+      badge: "",
+      descricao: "O capitão dos Chapéus de Palha em amigurumi, com todos os detalhes do personagem.",
+      imagens: ["assets/images/produto-luffy.jpg"],
+    },
+    {
+      nome: "Girafinha Gigi",
+      categoria: "Animais",
+      tamanho: "25 cm",
+      badge: "",
+      descricao: "Girafinha de pescoço comprido e olhar meigo, feita ponto a ponto com muito carinho.",
+      imagens: ["assets/images/produto-girafa.jpg"],
+    },
+    {
+      nome: "Ursinho Teddy",
+      categoria: "Animais",
+      tamanho: "28 cm",
+      badge: "Novidade",
+      descricao: "Ursinho clássico e macio, do tamanho de abraçar. Escolha a cor favorita.",
+      imagens: [],
+    },
+    {
+      nome: "Coelhinho Nino",
+      categoria: "Animais",
+      tamanho: "26 cm",
+      badge: "",
+      descricao: "Coelho fofo de orelhas longas, perfeito para bebês e para decorar o quarto.",
+      imagens: [],
+    },
+    {
+      nome: "Gatinho Bibi",
+      categoria: "Animais",
+      tamanho: "24 cm",
+      badge: "",
+      descricao: "Gatinho charmoso com detalhes bordados à mão. Um ótimo companheiro de estante.",
+      imagens: [],
+    },
+    {
+      nome: "Elefantinho Lila",
+      categoria: "Bebês",
+      tamanho: "22 cm",
+      badge: "",
+      descricao: "Elefante delicado em tons suaves, uma linda lembrança de nascimento.",
+      imagens: [],
+    },
+    {
+      nome: "Boneca Manu",
+      categoria: "Presentes",
+      tamanho: "35 cm",
+      badge: "Novidade",
+      descricao: "Boneca personalizável: cabelo, roupinha e cores do seu jeito.",
+      imagens: [],
+    },
+    {
+      nome: "Sonic",
+      categoria: "Personagens",
+      tamanho: "30 cm",
+      badge: "Novidade",
+      descricao: "O ouriço mais veloz dos games em versão amigurumi, cheio de detalhes.",
+      imagens: [],
+    },
+    {
+      nome: "Stitch",
+      categoria: "Personagens",
+      tamanho: "28 cm",
+      badge: "Novidade",
+      descricao: "O alienígena mais amado, fofo e cheio de personalidade.",
+      imagens: [],
+    },
+    {
+      nome: "Baby Grogu",
+      categoria: "Personagens",
+      tamanho: "26 cm",
+      badge: "",
+      descricao: "O baby mais famoso da galáxia, com sua túnica e orelhinhas.",
+      imagens: [],
+    },
+    {
+      nome: "Polvo do Humor",
+      categoria: "Presentes",
+      tamanho: "18 cm",
+      badge: "",
+      descricao: "Polvo reversível: de um lado feliz, do outro emburrado. Diversão garantida.",
+      imagens: [],
+    },
+  ];
+
+  /* --------- Placeholder "foto em breve" (SVG on-brand) --------- */
+  const PLACEHOLDER_CORES = [
+    { bg: "#FBF1E8", corpo: "#C98B7D" },
+    { bg: "#F1EFE3", corpo: "#9FAE82" },
+    { bg: "#FBE9E4", corpo: "#E7A89F" },
+  ];
+  function placeholder(nome, i) {
+    const c = PLACEHOLDER_CORES[i % PLACEHOLDER_CORES.length];
+    const svg =
+      `<svg xmlns='http://www.w3.org/2000/svg' width='400' height='500' viewBox='0 0 400 500'>` +
+      `<rect width='400' height='500' fill='${c.bg}'/>` +
+      `<g transform='translate(200,205)'>` +
+      `<circle cx='-52' cy='-66' r='30' fill='${c.corpo}'/>` +
+      `<circle cx='52' cy='-66' r='30' fill='${c.corpo}'/>` +
+      `<circle cx='0' cy='0' r='92' fill='${c.corpo}'/>` +
+      `<circle cx='-33' cy='-6' r='9' fill='#4a3126'/>` +
+      `<circle cx='33' cy='-6' r='9' fill='#4a3126'/>` +
+      `<circle cx='-50' cy='20' r='12' fill='#ffffff' opacity='0.35'/>` +
+      `<circle cx='50' cy='20' r='12' fill='#ffffff' opacity='0.35'/>` +
+      `<path d='M-15 22 Q0 36 15 22' stroke='#4a3126' stroke-width='4' fill='none' stroke-linecap='round'/>` +
+      `</g>` +
+      `<text x='200' y='420' text-anchor='middle' font-family='Verdana,sans-serif' font-size='23' font-weight='700' fill='#6B4A38'>${nome}</text>` +
+      `<text x='200' y='452' text-anchor='middle' font-family='Verdana,sans-serif' font-size='15' fill='#B49C8C'>foto em breve</text>` +
+      `</svg>`;
+    return "data:image/svg+xml," + encodeURIComponent(svg);
+  }
+
+  function imagensDe(p) {
+    if (p.imagens && p.imagens.length) return p.imagens;
+    return [0, 1, 2].map((i) => placeholder(p.nome, i));
+  }
+
+  /* --------- Renderiza o catálogo --------- */
+  const STARS =
+    `<div class="stars" aria-label="5 de 5 estrelas">` +
+    `<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3 6 6 .8-4.5 4.3 1 6.3L12 18l-5.5 3.4 1-6.3L3 8.8 9 8z"/></svg>`.repeat(5) +
+    `</div>`;
+  const SVG_FAV = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>`;
+  const SVG_SIZE = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M6 9v6M18 9v6"/></svg>`;
+  const SVG_WHATS = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20z"/></svg>`;
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+
+  function cardHTML(p) {
+    const imgs = imagensDe(p);
+    const badge = p.badge ? `<span class="card__badge">${esc(p.badge)}</span>` : "";
+    const thumbs =
+      imgs.length > 1
+        ? `<div class="card__thumbs">` +
+          imgs
+            .map(
+              (src, i) =>
+                `<button class="card__thumb${i === 0 ? " is-active" : ""}" type="button" data-src="${src}" aria-label="Ver foto ${i + 1}"><img src="${src}" alt="" loading="lazy"></button>`
+            )
+            .join("") +
+          `</div>`
+        : "";
+    return (
+      `<article class="card reveal" data-name="${esc(p.nome)}" data-size="${esc(p.tamanho || "")}" data-cat="${esc(p.categoria || "")}">` +
+      `<div class="card__media">` +
+      `<img class="card__img" src="${imgs[0]}" alt="Amigurumi ${esc(p.nome)}" loading="lazy">` +
+      badge +
+      `<button class="card__fav" type="button" aria-label="Favoritar">${SVG_FAV}</button>` +
+      `</div>` +
+      thumbs +
+      `<div class="card__body">` +
+      `<span class="card__cat">${esc(p.categoria)}</span>` +
+      `<h3 class="card__title">${esc(p.nome)}</h3>` +
+      STARS +
+      `<p class="card__size">${SVG_SIZE}Tamanho: ${esc(p.tamanho)}</p>` +
+      `<p class="card__desc">${esc(p.descricao)}</p>` +
+      `<p class="card__ask">Consulte o valor</p>` +
+      `<button class="card__add" type="button" data-buy>${SVG_WHATS}Pedir pelo WhatsApp</button>` +
+      `</div>` +
+      `</article>`
+    );
+  }
+
+  const grid = document.getElementById("gridProducts");
+  if (grid) {
+    grid.innerHTML = PRODUTOS.map(cardHTML).join("");
   }
 
   /* --------- Navbar: sombra ao rolar --------- */
@@ -33,7 +225,6 @@
     const open = menu.classList.toggle("is-open");
     toggle.setAttribute("aria-expanded", String(open));
   });
-  // fecha o menu ao clicar num link
   menu.querySelectorAll("a").forEach((a) =>
     a.addEventListener("click", () => {
       menu.classList.remove("is-open");
@@ -65,7 +256,6 @@
     .map((id) => document.getElementById(id))
     .filter(Boolean);
   const links = menu.querySelectorAll("a");
-
   if ("IntersectionObserver" in window && sections.length) {
     const spy = new IntersectionObserver(
       (entries) => {
@@ -95,34 +285,48 @@
     toastTimer = setTimeout(() => toast.classList.remove("is-shown"), 2600);
   }
 
-  /* --------- Pedido de produto → WhatsApp ---------
-     Cada card carrega os dados do produto (nome, tamanho, preço, categoria).
-     Ao clicar em "Pedir pelo WhatsApp", já monta a mensagem completa. */
-  document.querySelectorAll("[data-buy]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const card = btn.closest(".card");
-      const nome = card?.dataset.name || "amigurumi";
-      const tamanho = card?.dataset.size || "";
-      const cat = card?.dataset.cat || "";
+  /* --------- Interações do catálogo (delegação de eventos) --------- */
+  if (grid) {
+    grid.addEventListener("click", (e) => {
+      // trocar foto pela miniatura
+      const thumb = e.target.closest(".card__thumb");
+      if (thumb) {
+        const card = thumb.closest(".card");
+        const main = card.querySelector(".card__img");
+        if (main) main.src = thumb.dataset.src;
+        card.querySelectorAll(".card__thumb").forEach((t) =>
+          t.classList.toggle("is-active", t === thumb)
+        );
+        return;
+      }
 
-      let texto = `Olá! Quero fazer um pedido pela loja do Fio dos Desejos.\n\n`;
-      texto += `Modelo: ${nome}\n`;
-      if (cat) texto += `Categoria: ${cat}\n`;
-      if (tamanho) texto += `Tamanho: ${tamanho}\n`;
-      texto += `\nPode me passar o valor, disponibilidade e prazo de entrega?`;
+      // favoritar
+      const fav = e.target.closest(".card__fav");
+      if (fav) {
+        const active = fav.classList.toggle("is-active");
+        fav.setAttribute("aria-label", active ? "Remover dos favoritos" : "Favoritar");
+        return;
+      }
 
-      showToast(`Abrindo o WhatsApp com seu pedido...`);
-      openWhats(texto);
+      // pedir pelo WhatsApp
+      const buy = e.target.closest("[data-buy]");
+      if (buy) {
+        const card = buy.closest(".card");
+        const nome = card?.dataset.name || "amigurumi";
+        const tamanho = card?.dataset.size || "";
+        const cat = card?.dataset.cat || "";
+
+        let texto = `Olá! Quero fazer um pedido pela loja do Fio dos Desejos.\n\n`;
+        texto += `Modelo: ${nome}\n`;
+        if (cat) texto += `Categoria: ${cat}\n`;
+        if (tamanho) texto += `Tamanho: ${tamanho}\n`;
+        texto += `\nPode me passar o valor, disponibilidade e prazo de entrega?`;
+
+        showToast("Abrindo o WhatsApp com seu pedido...");
+        openWhats(texto);
+      }
     });
-  });
-
-  /* --------- Favoritar --------- */
-  document.querySelectorAll(".card__fav").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const active = btn.classList.toggle("is-active");
-      btn.setAttribute("aria-label", active ? "Remover dos favoritos" : "Favoritar");
-    });
-  });
+  }
 
   /* --------- Formulário de pedido/personalização → WhatsApp --------- */
   const sendBtn = document.getElementById("sendWhats");
