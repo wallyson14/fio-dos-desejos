@@ -373,6 +373,15 @@
 }
 .card__installment { font-size: 0.8rem; color: var(--brown-faint); }
 
+/* "Consulte o valor" — preço sob consulta */
+.card__ask {
+  margin-top: 0.2rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--rose-deep);
+}
+
 .card__add {
   margin-top: auto;
   width: 100%;

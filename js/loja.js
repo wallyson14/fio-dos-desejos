@@ -104,16 +104,12 @@
       const nome = card?.dataset.name || "amigurumi";
       const tamanho = card?.dataset.size || "";
       const cat = card?.dataset.cat || "";
-      const preco = card?.dataset.price
-        ? "R$ " + Number(card.dataset.price).toFixed(2).replace(".", ",")
-        : "";
 
       let texto = `Olá! Quero fazer um pedido pela loja do Fio dos Desejos.\n\n`;
       texto += `Modelo: ${nome}\n`;
       if (cat) texto += `Categoria: ${cat}\n`;
       if (tamanho) texto += `Tamanho: ${tamanho}\n`;
-      if (preco) texto += `Valor: ${preco}\n`;
-      texto += `\nPode me confirmar disponibilidade e prazo de entrega?`;
+      texto += `\nPode me passar o valor, disponibilidade e prazo de entrega?`;
 
       showToast(`Abrindo o WhatsApp com seu pedido...`);
       openWhats(texto);
