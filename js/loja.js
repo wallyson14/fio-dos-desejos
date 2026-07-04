@@ -59,7 +59,7 @@
       tamanho: "18 cm",
       badge: "Novidade",
       descricao: "A turma do Mistério S/A completa: Salsicha, Scooby, Fred, Daphne e Velma. Coleção especial para os fãs.",
-      imagens: ["assets/images/scooby.png"],
+      imagens: ["assets/images/scooby.jpg"],
     },
     {
       nome: "Bebê Dino",
@@ -67,7 +67,7 @@
       tamanho: "30 cm",
       badge: "Novidade",
       descricao: "Bebê fantasiado de dinossauro ao lado do seu dino companheiro. Uma dupla cheia de fofura.",
-      imagens: ["assets/images/bebe-dino.png"],
+      imagens: ["assets/images/bebe-dino.jpg"],
     },
     {
       nome: "Fazendinha",
@@ -75,7 +75,7 @@
       tamanho: "15 cm cada",
       badge: "",
       descricao: "Vaquinha, cavalo, porquinho, ovelha e galinha em fio macio. Coleção fofa para o quarto do bebê.",
-      imagens: ["assets/images/fazendinha.png"],
+      imagens: ["assets/images/fazendinha.jpg"],
     },
     {
       nome: "Princesas",
@@ -83,7 +83,7 @@
       tamanho: "10 cm cada",
       badge: "Novidade",
       descricao: "Coleção de princesas encantadas, com vestidos coloridos e muitos detalhes bordados à mão.",
-      imagens: ["assets/images/princesas.png"],
+      imagens: ["assets/images/princesas.jpg"],
     },
     {
       nome: "Turma de Super-heróis",
@@ -91,7 +91,7 @@
       tamanho: "12 cm cada",
       badge: "",
       descricao: "Coleção de super-heróis em versão fofa, cheia de cor e detalhes. Escolha o seu favorito.",
-      imagens: ["assets/images/herois.png"],
+      imagens: ["assets/images/herois.jpg"],
     },
     {
       nome: "Meninas Superpoderosas",
@@ -99,7 +99,7 @@
       tamanho: "8 cm cada",
       badge: "",
       descricao: "Docinho, Florzinha e Lindinha prontas para salvar o dia. Trio fofo em miniatura.",
-      imagens: ["assets/images/super-poderosas.png"],
+      imagens: ["assets/images/super-poderosas.jpg"],
     },
     {
       nome: "Xena",
@@ -107,7 +107,7 @@
       tamanho: "20 cm",
       badge: "",
       descricao: "A princesa guerreira em amigurumi, com armadura dourada e todos os detalhes.",
-      imagens: ["assets/images/xena.png"],
+      imagens: ["assets/images/xena.jpg"],
     },
     {
       nome: "Bilbo (O Hobbit)",
@@ -115,7 +115,7 @@
       tamanho: "15 cm",
       badge: "",
       descricao: "O hobbit aventureiro da Terra-média, perfeito para os fãs de Tolkien e O Senhor dos Anéis.",
-      imagens: ["assets/images/bilbo.png"],
+      imagens: ["assets/images/bilbo.jpg"],
     },
     {
       nome: "Harry Potter",
@@ -123,7 +123,7 @@
       tamanho: "10 cm",
       badge: "",
       descricao: "O bruxo mais famoso de Hogwarts em miniatura, ótimo como chaveiro ou lembrancinha.",
-      imagens: ["assets/images/harry-potter.png"],
+      imagens: ["assets/images/harry-potter.jpg"],
     },
     {
       nome: "Tom e Jerry",
@@ -131,7 +131,7 @@
       tamanho: "12 cm",
       badge: "",
       descricao: "A dupla mais divertida dos desenhos em chaveiros de crochê. Vendidos juntos ou separados.",
-      imagens: ["assets/images/tom-jerry.png"],
+      imagens: ["assets/images/tom-jerry.jpg"],
     },
   ];
 
