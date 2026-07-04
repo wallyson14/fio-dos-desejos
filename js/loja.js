@@ -195,7 +195,7 @@
           `</div>`
         : "";
     return (
-      `<article class="card reveal" data-name="${esc(p.nome)}" data-size="${esc(p.tamanho || "")}" data-cat="${esc(p.categoria || "")}">` +
+      `<article class="card reveal" data-name="${esc(p.nome)}" data-cat="${esc(p.categoria || "")}">` +
       `<div class="card__media">` +
       `<img class="card__img" src="${imgs[0]}" alt="Amigurumi ${esc(p.nome)}" loading="lazy">` +
       badge +
@@ -206,7 +206,7 @@
       `<span class="card__cat">${esc(p.categoria)}</span>` +
       `<h3 class="card__title">${esc(p.nome)}</h3>` +
       STARS +
-      `<p class="card__size">${SVG_SIZE}Tamanho: ${esc(p.tamanho)}</p>` +
+      `<p class="card__size">${SVG_SIZE}Tamanho: você escolhe</p>` +
       `<p class="card__desc">${esc(p.descricao)}</p>` +
       `<p class="card__ask">Consulte o valor</p>` +
       `<button class="card__add" type="button" data-buy>${SVG_WHATS}Pedir pelo WhatsApp</button>` +
@@ -321,14 +321,13 @@
       if (buy) {
         const card = buy.closest(".card");
         const nome = card?.dataset.name || "amigurumi";
-        const tamanho = card?.dataset.size || "";
         const cat = card?.dataset.cat || "";
 
         let texto = `Olá! Quero fazer um pedido pela loja do Fio dos Desejos.\n\n`;
         texto += `Modelo: ${nome}\n`;
         if (cat) texto += `Categoria: ${cat}\n`;
-        if (tamanho) texto += `Tamanho: ${tamanho}\n`;
-        texto += `\nPode me passar o valor, disponibilidade e prazo de entrega?`;
+        texto += `Tamanho: quero combinar com você\n`;
+        texto += `\nPode me passar o valor, os tamanhos disponíveis e o prazo de entrega?`;
 
         showToast("Abrindo o WhatsApp com seu pedido...");
         openWhats(texto);
